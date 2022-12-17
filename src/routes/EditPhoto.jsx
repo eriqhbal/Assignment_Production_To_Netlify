@@ -10,7 +10,7 @@ const EditPhoto = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const editPhoto =  (e) => {
+  const editPhoto = (e) => {
     e.preventDefault();
     const createdAt = new Date().toJSON().slice(0, 10).replace(/-/g, "/");
     fetch(`https://gallery-app-server.vercel.app/photos/${id}`, {
@@ -26,9 +26,9 @@ const EditPhoto = () => {
     }).then((res) => {
       return res.json();
     }).then((myData) => {
-      if(!myData.error) {
+      if (!myData.error) {
         navigate('/photos')
-      } else{
+      } else {
         setError(myData.error);
       }
     })
@@ -37,14 +37,15 @@ const EditPhoto = () => {
   useEffect(() => {
     setLoading(true);
     fetch(`https://gallery-app-server.vercel.app/photos/${id}`).then((res) => res.json()).then((myData) => {
-      if(!myData) {
+      if (!myData) {
         setImageUrl(myData.imageUrl);
         setCaptions(myData.captions);
-        setLoading(false);
+
       } else {
         setError(myData.error)
       }
     })
+    setLoading(false);
   }, [id]);
 
   if (error) return <div>Error!</div>;
