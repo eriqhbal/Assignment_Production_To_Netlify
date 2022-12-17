@@ -22,7 +22,7 @@ const Photos = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`https://gallery-app-server.vercel.app/photos?_sort=id&_order=${sort}&q=${search}`).then((data) => data.json()).then((myData) => {
+    fetch(`https://gallery-app-server.vercel.app/photos?_sort=id&_order=${sort}&q=${submited}`).then((data) => data.json()).then((myData) => {
       if (!myData.error) {
         setPhotos(myData)
       } else {
