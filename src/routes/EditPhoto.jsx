@@ -40,7 +40,6 @@ const EditPhoto = () => {
       if (!myData) {
         setImageUrl(myData.imageUrl);
         setCaptions(myData.captions);
-
       } else {
         setError(myData.error)
       }

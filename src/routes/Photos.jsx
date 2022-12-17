@@ -23,7 +23,11 @@ const Photos = () => {
   useEffect(() => {
     setLoading(true);
     fetch(`https://gallery-app-server.vercel.app/photos?_sort=id&_order=${sort}&q=${search}`).then((data) => data.json()).then((myData) => {
-      setPhotos(myData);
+      if (!myData.error) {
+        setPhotos(myData)
+      } else {
+        setError(myData.error);
+      }
       setLoading(false);
     })
   }, [sort, submited]);
@@ -33,7 +37,11 @@ const Photos = () => {
     fetch(`https://gallery-app-server.vercel.app/photos`).then((res) => {
       return res.json();
     }).then((myData) => {
-      setPhotos(myData);
+      if (!myData.error) {
+        setPhotos(myData)
+      } else {
+        setError(myData.error);
+      }
       setLoading(false);
     })
   }, []);
